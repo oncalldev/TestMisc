@@ -16,8 +16,8 @@ namespace TestMisc
         public static void TestDebug()
         {
             int selectowner = 1;
-            int selectgallery;
-            int selectitem;
+            int selectgallery = 0; ;
+            int selectitem = 2;
 
             List<Owner> owners = new List<Owner>();
             owners.Add(new Owner { OwnerId = 0, Name = "Owner 0" });
