@@ -58,18 +58,26 @@ namespace TestMisc
             //               join item in items on gallery.OwnerId equals item.OwnerId
             //               select new { GalleryId = gallery.GalleryId, OwnerId = gallery.OwnerId, ItemId = item.ItemId, Name = item.Name };
 
-            var selected = from owner in owners
-                           join gallery in galleries on owner.OwnerId equals gallery.OwnerId
-                           join item in items on gallery.OwnerId equals item.OwnerId
-                           where owner.OwnerId == selectowner & gallery.GalleryId == 0
-                           select new { OwnerId = owner.OwnerId, OwnerName = owner.Name ,GalleryId = gallery.GalleryId, GalleryName = gallery.Name, ItemId = item.ItemId, ItemName = item.Name };
+            //var selected = from owner in owners
+            //               join gallery in galleries on owner.OwnerId equals gallery.OwnerId
+            //               join item in items on gallery.OwnerId equals item.OwnerId
+            //               where owner.OwnerId == selectowner & gallery.GalleryId == 0
+            //               select new { OwnerId = owner.OwnerId, OwnerName = owner.Name ,GalleryId = gallery.GalleryId, GalleryName = gallery.Name, ItemId = item.ItemId, ItemName = item.Name };
 
-            foreach (var select in selected)
-            {
-                Console.WriteLine($"OwnerId: {select.OwnerId}, Gallery ID: {select.GalleryId}, ItemId: {select.ItemId}");
-            }
+            //foreach (var select in selected)
+            //{
+            //    Console.WriteLine($"OwnerId: {select.OwnerId}, Gallery ID: {select.GalleryId}, ItemId: {select.ItemId}");
+            //}
 
-            //Console.WriteLine("This is a test of TestDebug");
+            DTOStuff dts = new DTOStuff();
+            dts.owner.Name = "Owner One";
+            dts.owner.OwnerId = 1;
+            dts.galleries.Add(new Gallery { GalleryId = 1, Name = "Gallery 1" });
+            dts.galleries.Add(new Gallery { GalleryId = 2, Name = "Gallery 2" });
+            dts.galleries.Add(new Gallery { GalleryId = 3, Name = "Gallery 3" });
+
+            Console.WriteLine($"Name {dts.owner.Name}");
+            
         }
         public class Owner
         {
@@ -89,6 +97,14 @@ namespace TestMisc
             public int ItemId { get; set; }
             public int OwnerId { get; set; }
             public string Name { get; set; }
+        }
+
+        public class DTOStuff
+        {
+            public Owner owner = new Owner();
+            public List<Gallery> galleries = new List<Gallery>();
+            public List<Item> items = new List<Item>();
+
         }
     }
 }
